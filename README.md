@@ -53,7 +53,7 @@ PDF ──► PDFKit text layer ──(есть текст?)──► норма
 **иврита в нём нет**: `VNRecognizeTextRequest.supportedRecognitionLanguages()` на macOS 27 / iOS 27 отдаёт
 арабский, но не `he` (проверяется `swift run bituah info`). Поэтому ивритские слова читает **Tesseract 5 `heb`**
 (здесь — бинарник Homebrew через `Process`; на iOS — тот же libtesseract + leptonica как xcframework за тем же
-протоколом `OCREngine`, код пайплайна не меняется). Модель `heb.traineddata` — ~3 МБ, CPU, ~2–4 с на страницу
+протоколом `OCREngine`, код пайплайна не меняется). Модель `heb.traineddata` — ~1 МБ (tessdata_fast), CPU, ~2–4 с на страницу
 A4 при 300 dpi на M-серии; на iPhone ожидаю 3–6 с, что для «сфотографировал полис» приемлемо.
 
 **Слияние Tesseract + Vision по геометрии (`OCRFusion`).** Замер показал, что Tesseract-heb уверенно читает
@@ -77,7 +77,7 @@ A4 при 300 dpi на M-серии; на iPhone ожидаю 3–6 с, что �
 
 | | правила + Tesseract/Vision | локальная VLM (Qwen2-VL-2B q4) |
 |---|---|---|
-| размер на устройстве | ~3 МБ (heb.traineddata) | 1.5–4 ГБ |
+| размер на устройстве | ~1 МБ (heb.traineddata) | 1.5–4 ГБ |
 | время на страницу | 0.04 с (текст) / 3–5 с (скан) | 10–30 с, троттлинг |
 | объяснимость | evidence-строка на каждое поле | нет |
 | детерминизм / тестируемость | полная | нет |
