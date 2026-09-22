@@ -27,9 +27,15 @@ swift run bituah parse policy.pdf                 # один документ �
 swift run bituah parse Samples -o result.json     # папка → result.json + result.details.json
 swift run bituah text policy.pdf [--force-ocr]    # отладка: нормализованные строки, которые видит экстрактор
 swift run bituah eval                             # таблицы точности по ground_truth.json
-swift run BituahDemo                              # SwiftUI-демо (RTL-форма, confidence и evidence по полю)
+swift run BituahDemo                              # SwiftUI-демо для macOS (RTL-форма, confidence и evidence по полю)
 swift test                                        # 28 unit/golden тестов
+./run-device.sh                                   # iOS-приложение (iOSApp/) — сборка, подпись и установка на подключённый iPhone
 ```
+
+iOS-приложение (`iOSApp/`, генерируется `xcodegen` из `project.yml`) подключает `BituahCore` как локальный
+пакет, содержит три тестовых полиса и открывает любой PDF из «Файлов». На iPhone работает уровень текстового
+слоя (Tesseract в демо не линкуется); поля показываются с confidence и evidence-строкой, интерфейс RTL.
+Для установки на устройство нужен Xcode с вашим Apple ID (команда в `project.yml`, поле `DEVELOPMENT_TEAM`).
 
 ## Результат на тестовых документах
 
@@ -205,7 +211,8 @@ Sources/BituahCore/            библиотека (iOS 16+ / macOS 14+), бе�
   Eval/     Metrics (совпадение полей, CER/WER), TestSetGenerator (scan_* / visual_* варианты)
   Models/   PolicyFields, ExtractionResult, JSONValue (упорядоченный JSON, числа в стиле 1500.0)
 Sources/bituah/                CLI: parse · text · make-testset · eval · info
-Sources/BituahDemo/            SwiftUI-демо (RTL, confidence/evidence по полю, drag&drop PDF)
+Sources/BituahDemo/            SwiftUI-демо для macOS (RTL, confidence/evidence по полю, drag&drop PDF)
+iOSApp/                        iOS-приложение (xcodegen project.yml + SwiftUI), ./run-device.sh ставит на iPhone
 Tests/BituahCoreTests/         unit + golden тесты
 Samples/                       тестовые PDF из задания; Samples/variants — сгенерированные варианты
 ground_truth.json · result.json · result.details.json · metrics.json

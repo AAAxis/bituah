@@ -4,3 +4,5 @@
 .swiftpm/
 .DS_Store
 Samples/variants/*.png
+iOSApp/build/
+iOSApp/*.xcodeproj

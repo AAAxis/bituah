@@ -1,0 +1,36 @@
+name: BituahApp
+options:
+  bundleIdPrefix: com.dima
+  deploymentTarget:
+    iOS: "17.0"
+packages:
+  BituahCore:
+    path: ..
+targets:
+  BituahApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+      - path: ../Samples
+        type: folder
+        buildPhase: resources
+        excludes: ["variants/**"]
+    dependencies:
+      - package: BituahCore
+        product: BituahCore
+    info:
+      path: Sources/Info.plist
+      properties:
+        UILaunchScreen: {}
+        UISupportsDocumentBrowser: true
+        LSSupportsOpeningDocumentsInPlace: true
+        CFBundleDisplayName: ביטוח
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+    settings:
+      base:
+        SWIFT_VERSION: "5.9"
+        PRODUCT_BUNDLE_IDENTIFIER: com.dima.bituah
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: LJPXXSNQZ9
+        TARGETED_DEVICE_FAMILY: "1"

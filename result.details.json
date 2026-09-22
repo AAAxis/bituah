@@ -48,10 +48,10 @@
     "source": "pdf_text_layer",
     "pages": 1.0,
     "timings_sec": {
-      "extract": 0.02,
-      "normalize": 0.023,
-      "text_layer": 0.038,
-      "total": 0.081
+      "extract": 0.071,
+      "normalize": 0.081,
+      "text_layer": 0.088,
+      "total": 0.243
     },
     "warnings": []
   },
@@ -104,10 +104,10 @@
     "source": "pdf_text_layer",
     "pages": 1.0,
     "timings_sec": {
-      "extract": 0.016,
-      "normalize": 0.017,
-      "text_layer": 0.008,
-      "total": 0.041
+      "extract": 0.041,
+      "normalize": 0.042,
+      "text_layer": 0.033,
+      "total": 0.115
     },
     "warnings": []
   },
@@ -160,10 +160,10 @@
     "source": "pdf_text_layer",
     "pages": 1.0,
     "timings_sec": {
-      "extract": 0.017,
-      "normalize": 0.015,
-      "text_layer": 0.004,
-      "total": 0.036
+      "extract": 0.042,
+      "normalize": 0.033,
+      "text_layer": 0.014,
+      "total": 0.089
     },
     "warnings": []
   }
