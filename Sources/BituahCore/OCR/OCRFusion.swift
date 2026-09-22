@@ -26,7 +26,9 @@ public enum OCRFusion {
     public static func fuse(primary: [TextLine], numeric: [TextLine]) -> Result {
         var lines = primary
         var replaced = 0
-        let tokens = numeric.flatMap { $0.words }.filter { isNumericToken($0.text) && $0.text.filter(\.isNumber).count >= 1 }
+        let tokens = numeric.flatMap { $0.words }.filter {
+            isNumericToken($0.text) && $0.text.filter(\.isNumber).count >= 1 && $0.confidence >= 0.5
+        }
 
         for token in tokens {
             // Row: the primary line with the best vertical overlap.
@@ -45,6 +47,13 @@ public enum OCRFusion {
                 continue
             }
             var line = lines[idx]
+            let covered = line.words.filter { horizontalOverlap($0.bbox, token.bbox) >= 0.3 }
+            // A digit engine without a Hebrew model reads Hebrew glyphs as digits ("מספר" → "7901"):
+            // never overwrite a word the primary engine read as Hebrew.
+            if covered.contains(where: { hebrewLetterCount($0.text) >= 2 }) { continue }
+            // Don't trade a longer digit string for a shorter one (dropped digits in the ID).
+            let tokenDigits = cleanToken.filter(\.isNumber).count
+            if covered.contains(where: { $0.text.filter(\.isNumber).count > tokenDigits }) { continue }
             // Drop primary words that the token covers horizontally (garbage read of the same glyphs).
             let before = line.words.count
             line.words.removeAll { w in horizontalOverlap(w.bbox, token.bbox) >= 0.3 }
@@ -66,6 +75,10 @@ public enum OCRFusion {
             return a.bbox.maxX > b.bbox.maxX
         }
         return Result(lines: lines, replacedTokens: replaced)
+    }
+
+    static func hebrewLetterCount(_ s: String) -> Int {
+        s.unicodeScalars.filter { (0x05D0...0x05EA).contains($0.value) }.count
     }
 
     static func rebuildText(_ words: [TextWord]) -> String {

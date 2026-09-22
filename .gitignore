@@ -6,3 +6,4 @@
 Samples/variants/*.png
 iOSApp/build/
 iOSApp/*.xcodeproj
+iOSApp/Vendor/libtesseract/libtesseract.xcframework/

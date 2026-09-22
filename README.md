@@ -29,13 +29,17 @@ swift run bituah text policy.pdf [--force-ocr]    # отладка: нормал
 swift run bituah eval                             # таблицы точности по ground_truth.json
 swift run BituahDemo                              # SwiftUI-демо для macOS (RTL-форма, confidence и evidence по полю)
 swift test                                        # 28 unit/golden тестов
+iOSApp/setup.sh                                   # один раз: скачать libtesseract.xcframework (~58 МБ) для iOS-сборки
 ./run-device.sh                                   # iOS-приложение (iOSApp/) — сборка, подпись и установка на подключённый iPhone
 ```
 
-iOS-приложение (`iOSApp/`, генерируется `xcodegen` из `project.yml`) подключает `BituahCore` как локальный
-пакет, содержит три тестовых полиса и открывает любой PDF из «Файлов». На iPhone работает уровень текстового
-слоя (Tesseract в демо не линкуется); поля показываются с confidence и evidence-строкой, интерфейс RTL.
-Для установки на устройство нужен Xcode с вашим Apple ID (команда в `project.yml`, поле `DEVELOPMENT_TEAM`).
+iOS-приложение (`iOSApp/`, генерируется `xcodegen` из `project.yml`) — две вкладки: **Сканирование**
+(одна кнопка «צלם פוליסה» → VisionKit-сканер документов → тот же пайплайн с OCR; плюс импорт PDF из «Файлов»
+и встроенные примеры) и **История** (все распознанные полисы, хранятся локально в `Documents/history.json`).
+На iPhone работает полный стек: PDFKit-слой, **Tesseract 5 `heb` слинкован в приложение** (вендоренный
+`SwiftyTesseract` + прекомпилированный `libtesseract.xcframework`, модели в `tessdata/`), Vision-слияние цифр,
+нормализатор и экстрактор — тот же `BituahCore`, без изменений. Скан A4 на симуляторе — ~4 с, 8/8 полей на
+тестовом скане. Для установки на устройство нужен Xcode с вашим Apple ID (`DEVELOPMENT_TEAM` в `project.yml`).
 
 ## Результат на тестовых документах
 
@@ -181,7 +185,7 @@ truth **не проходят** контрольную сумму, поэтом�
 
 **OCR иврита на устройстве.**
 Сейчас Tesseract `heb` (LSTM 2017 г.): CER 12–16% на «грязных» сканах, слабость к тонким цифрам. План:
-1) Tesseract как xcframework + Vision для цифр — как здесь, это уже даёт рабочий MVP;
+1) Tesseract как xcframework + Vision для цифр — сделано в `iOSApp/`, это уже рабочий MVP на телефоне;
 2) дообучить распознаватель строк (PARSeq / TrOCR-small, или дообучение `heb.traineddata` на синтетике из
    шрифтов израильских бланков + реальные строки) → экспорт в CoreML, int8; детекцию строк оставить Vision
    (`VNDetectTextRectanglesRequest` язык-независим); цель — CER < 3% на строках полей;
@@ -212,7 +216,7 @@ Sources/BituahCore/            библиотека (iOS 16+ / macOS 14+), бе�
   Models/   PolicyFields, ExtractionResult, JSONValue (упорядоченный JSON, числа в стиле 1500.0)
 Sources/bituah/                CLI: parse · text · make-testset · eval · info
 Sources/BituahDemo/            SwiftUI-демо для macOS (RTL, confidence/evidence по полю, drag&drop PDF)
-iOSApp/                        iOS-приложение (xcodegen project.yml + SwiftUI), ./run-device.sh ставит на iPhone
+iOSApp/                        iOS-приложение: Scan/History, VisionKit-камера, Tesseract для iOS (Vendor/), ./run-device.sh
 Tests/BituahCoreTests/         unit + golden тесты
 Samples/                       тестовые PDF из задания; Samples/variants — сгенерированные варианты
 ground_truth.json · result.json · result.details.json · metrics.json

@@ -6,6 +6,8 @@ options:
 packages:
   BituahCore:
     path: ..
+  SwiftyTesseract:
+    path: Vendor/SwiftyTesseract
 targets:
   BituahApp:
     type: application
@@ -15,14 +17,20 @@ targets:
       - path: ../Samples
         type: folder
         buildPhase: resources
-        excludes: ["variants/**"]
+        excludes: ["variants/visual_*"]
+      - path: tessdata
+        type: folder
+        buildPhase: resources
     dependencies:
       - package: BituahCore
         product: BituahCore
+      - package: SwiftyTesseract
+        product: SwiftyTesseract
     info:
       path: Sources/Info.plist
       properties:
         UILaunchScreen: {}
+        NSCameraUsageDescription: המצלמה משמשת לצילום הפוליסה. העיבוד מתבצע על המכשיר בלבד.
         UISupportsDocumentBrowser: true
         LSSupportsOpeningDocumentsInPlace: true
         CFBundleDisplayName: ביטוח
