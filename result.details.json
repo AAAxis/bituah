@@ -1,0 +1,170 @@
+{
+  "test_policy_1_harel_health.pdf": {
+    "fields": {
+      "insured_id": "038492018",
+      "company_name": "הראל חברה לביטוח בע\"מ",
+      "policy_number": "7492019-24/01",
+      "insurance_type": "בריאות",
+      "start_date": "2026-01-01",
+      "end_date": "2026-12-31",
+      "monthly_premium_ils": 245.5,
+      "deductible_ils": 1500.0
+    },
+    "evidence": {
+      "insured_id": {
+        "confidence": 0.88,
+        "evidence": "מספר תעודת זהות: 038492018",
+        "note": "ת.ז checksum failed (value kept; verify manually)"
+      },
+      "company_name": {
+        "confidence": 1.0,
+        "evidence": "שם חברת הביטוח הראל חברה לביטוח בע\"מ"
+      },
+      "policy_number": {
+        "confidence": 0.93,
+        "evidence": "מספר פוליסה 7492019-24/01"
+      },
+      "insurance_type": {
+        "confidence": 0.94,
+        "evidence": "סוג ענף ביטוח ביטוח בריאות פרטי (ניתוחים והשתלות בארץ ובחו\"ל)"
+      },
+      "start_date": {
+        "confidence": 0.99,
+        "evidence": "תקופת הביטוח מתאריך: 01/01/2026 עד תאריך: 31/12/2026"
+      },
+      "end_date": {
+        "confidence": 0.99,
+        "evidence": "תקופת הביטוח מתאריך: 01/01/2026 עד תאריך: 31/12/2026"
+      },
+      "monthly_premium_ils": {
+        "confidence": 1.0,
+        "evidence": "פרמיה חודשית לתשלום 245.50 ש\"ח"
+      },
+      "deductible_ils": {
+        "confidence": 1.0,
+        "evidence": "השתתפות עצמית בפועל 1,500 ש\"ח"
+      }
+    },
+    "source": "pdf_text_layer",
+    "pages": 1.0,
+    "timings_sec": {
+      "extract": 0.02,
+      "normalize": 0.023,
+      "text_layer": 0.038,
+      "total": 0.081
+    },
+    "warnings": []
+  },
+  "test_policy_2_migdal_auto.pdf": {
+    "fields": {
+      "insured_id": "059281742",
+      "company_name": "מגדל חברה לביטוח בע\"מ",
+      "policy_number": "9102845-26",
+      "insurance_type": "רכב",
+      "start_date": "2026-03-15",
+      "end_date": "2027-03-14",
+      "monthly_premium_ils": 380.0,
+      "deductible_ils": 1200.0
+    },
+    "evidence": {
+      "insured_id": {
+        "confidence": 0.88,
+        "evidence": "מספר תעודת זהות: 059281742",
+        "note": "ת.ז checksum failed (value kept; verify manually)"
+      },
+      "company_name": {
+        "confidence": 1.0,
+        "evidence": "שם חברת הביטוח מגדל חברה לביטוח בע\"מ"
+      },
+      "policy_number": {
+        "confidence": 0.93,
+        "evidence": "מספר פוליסה 9102845-26"
+      },
+      "insurance_type": {
+        "confidence": 1.0,
+        "evidence": "סוג ביטוח ביטוח רכב (מקיף כולל שירותי דרך וגרירה)"
+      },
+      "start_date": {
+        "confidence": 0.99,
+        "evidence": "תקופת ביטוח מתאריך: 15/03/2026 עד תאריך: 14/03/2027"
+      },
+      "end_date": {
+        "confidence": 0.99,
+        "evidence": "תקופת ביטוח מתאריך: 15/03/2026 עד תאריך: 14/03/2027"
+      },
+      "monthly_premium_ils": {
+        "confidence": 1.0,
+        "evidence": "פרמיה חודשית לתשלום 380.00 ש\"ח"
+      },
+      "deductible_ils": {
+        "confidence": 1.0,
+        "evidence": "השתתפות עצמית במוסך הסדר 1,200 ש\"ח"
+      }
+    },
+    "source": "pdf_text_layer",
+    "pages": 1.0,
+    "timings_sec": {
+      "extract": 0.016,
+      "normalize": 0.017,
+      "text_layer": 0.008,
+      "total": 0.041
+    },
+    "warnings": []
+  },
+  "test_policy_3_phoenix_life.pdf": {
+    "fields": {
+      "insured_id": "021948375",
+      "company_name": "הפניקס חברה לביטוח בע\"מ",
+      "policy_number": "5549102-19",
+      "insurance_type": "חיים",
+      "start_date": "2026-06-01",
+      "end_date": "2036-05-31",
+      "monthly_premium_ils": 165.2,
+      "deductible_ils": 0.0
+    },
+    "evidence": {
+      "insured_id": {
+        "confidence": 0.88,
+        "evidence": "מספר תעודת זהות: 021948375",
+        "note": "ת.ז checksum failed (value kept; verify manually)"
+      },
+      "company_name": {
+        "confidence": 1.0,
+        "evidence": "שם חברת הביטוח הפניקס חברה לביטוח בע\"מ"
+      },
+      "policy_number": {
+        "confidence": 0.93,
+        "evidence": "מספר פוליסה 5549102-19"
+      },
+      "insurance_type": {
+        "confidence": 1.0,
+        "evidence": "סוג ביטוח ביטוח חיים (ריסק למוות מכל סיבה)"
+      },
+      "start_date": {
+        "confidence": 0.99,
+        "evidence": "תקופת ביטוח מתאריך: 01/06/2026 עד תאריך: 31/05/2036"
+      },
+      "end_date": {
+        "confidence": 0.99,
+        "evidence": "תקופת ביטוח מתאריך: 01/06/2026 עד תאריך: 31/05/2036"
+      },
+      "monthly_premium_ils": {
+        "confidence": 1.0,
+        "evidence": "פרמיה חודשית לתשלום 165.20 ש\"ח"
+      },
+      "deductible_ils": {
+        "confidence": 1.0,
+        "evidence": "השתתפות עצמית אין (0 ש\"ח)"
+      }
+    },
+    "source": "pdf_text_layer",
+    "pages": 1.0,
+    "timings_sec": {
+      "extract": 0.017,
+      "normalize": 0.015,
+      "text_layer": 0.004,
+      "total": 0.036
+    },
+    "warnings": []
+  }
+}

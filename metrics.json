@@ -1,0 +1,79 @@
+{
+  "test_policy_1_harel_health.pdf": {
+    "source": "pdf_text_layer",
+    "correct": 8.0,
+    "total": 8.0,
+    "mismatches": {},
+    "total_sec": 0.087
+  },
+  "test_policy_2_migdal_auto.pdf": {
+    "source": "pdf_text_layer",
+    "correct": 8.0,
+    "total": 8.0,
+    "mismatches": {},
+    "total_sec": 0.057
+  },
+  "test_policy_3_phoenix_life.pdf": {
+    "source": "pdf_text_layer",
+    "correct": 8.0,
+    "total": 8.0,
+    "mismatches": {},
+    "total_sec": 0.072
+  },
+  "visual_test_policy_1_harel_health.pdf": {
+    "source": "pdf_text_layer",
+    "correct": 8.0,
+    "total": 8.0,
+    "mismatches": {},
+    "total_sec": 0.092
+  },
+  "visual_test_policy_2_migdal_auto.pdf": {
+    "source": "pdf_text_layer",
+    "correct": 8.0,
+    "total": 8.0,
+    "mismatches": {},
+    "total_sec": 0.058
+  },
+  "visual_test_policy_3_phoenix_life.pdf": {
+    "source": "pdf_text_layer",
+    "correct": 8.0,
+    "total": 8.0,
+    "mismatches": {},
+    "total_sec": 0.065
+  },
+  "scan_test_policy_1_harel_health.pdf": {
+    "source": "tesseract_ocr",
+    "correct": 8.0,
+    "total": 8.0,
+    "mismatches": {},
+    "total_sec": 3.736
+  },
+  "scan_test_policy_2_migdal_auto.pdf": {
+    "source": "tesseract_ocr",
+    "correct": 8.0,
+    "total": 8.0,
+    "mismatches": {},
+    "total_sec": 2.059
+  },
+  "scan_test_policy_3_phoenix_life.pdf": {
+    "source": "tesseract_ocr",
+    "correct": 8.0,
+    "total": 8.0,
+    "mismatches": {},
+    "total_sec": 1.639
+  },
+  "ocr_text_quality": {
+    "scan_test_policy_1_harel_health.pdf": {
+      "cer": 0.157,
+      "wer": 0.18
+    },
+    "scan_test_policy_2_migdal_auto.pdf": {
+      "cer": 0.153,
+      "wer": 0.246
+    },
+    "scan_test_policy_3_phoenix_life.pdf": {
+      "cer": 0.122,
+      "wer": 0.225
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "test_policy_1_harel_health.pdf": {
+    "insured_id": "038492018",
+    "company_name": "הראל חברה לביטוח בע\"מ",
+    "policy_number": "7492019-24/01",
+    "insurance_type": "בריאות",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "monthly_premium_ils": 245.5,
+    "deductible_ils": 1500.0
+  },
+  "test_policy_2_migdal_auto.pdf": {
+    "insured_id": "059281742",
+    "company_name": "מגדל חברה לביטוח בע\"מ",
+    "policy_number": "9102845-26",
+    "insurance_type": "רכב",
+    "start_date": "2026-03-15",
+    "end_date": "2027-03-14",
+    "monthly_premium_ils": 380.0,
+    "deductible_ils": 1200.0
+  },
+  "test_policy_3_phoenix_life.pdf": {
+    "insured_id": "021948375",
+    "company_name": "הפניקס חברה לביטוח בע\"מ",
+    "policy_number": "5549102-19",
+    "insurance_type": "חיים",
+    "start_date": "2026-06-01",
+    "end_date": "2036-05-31",
+    "monthly_premium_ils": 165.2,
+    "deductible_ils": 0.0
+  }
+}

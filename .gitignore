@@ -1,0 +1,6 @@
+.build/
+*.xcodeproj
+*.xcworkspace
+.swiftpm/
+.DS_Store
+Samples/variants/*.png
