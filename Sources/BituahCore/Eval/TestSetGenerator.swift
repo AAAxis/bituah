@@ -80,6 +80,31 @@ public enum TestSetGenerator {
         pdf.closePDF()
     }
 
+    /// Typesets a plain-text policy (one line per row, logical order) into a right-aligned A4 PDF with a
+    /// proper text layer — used to build held-out templates with different wording and layout.
+    public static func makeDocument(fromText text: String, to dest: URL, fontSize: CGFloat = 11) throws {
+        guard let consumer = CGDataConsumer(url: dest as CFURL) else { throw OCRError("cannot write \(dest.path)") }
+        var mediaBox = CGRect(x: 0, y: 0, width: 595, height: 842)
+        guard let pdf = CGContext(consumer: consumer, mediaBox: &mediaBox, nil) else { throw OCRError("cannot create PDF context") }
+        let font = CTFontCreateWithName("Arial Hebrew" as CFString, fontSize, nil)
+        let bold = CTFontCreateWithName("Arial Hebrew Bold" as CFString, fontSize + 3, nil)
+        pdf.beginPage(mediaBox: &mediaBox)
+        pdf.textMatrix = .identity
+        var y = mediaBox.maxY - 60
+        for (i, raw) in text.components(separatedBy: "\n").enumerated() {
+            let line = raw.trimmingCharacters(in: .whitespaces)
+            if line.isEmpty { y -= 8; continue }
+            let attr = NSAttributedString(string: line, attributes: [.font: i == 0 ? bold : font])
+            let ctLine = CTLineCreateWithAttributedString(attr)
+            let width = CTLineGetTypographicBounds(ctLine, nil, nil, nil)
+            pdf.textPosition = CGPoint(x: mediaBox.maxX - 50 - CGFloat(width), y: y)
+            CTLineDraw(ctLine, pdf)
+            y -= (i == 0 ? 26 : 18)
+        }
+        pdf.endPage()
+        pdf.closePDF()
+    }
+
     /// Re-typesets the text of `source` into a new PDF whose text layer stores each line fully reversed
     /// (LTR-forced): the page still reads correctly, but the text layer is in visual order.
     /// PDFKit's extractor applies its own bidi pass, so what the parser sees is logical Hebrew with

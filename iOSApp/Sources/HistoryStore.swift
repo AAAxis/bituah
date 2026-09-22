@@ -21,7 +21,7 @@ struct HistoryEntry: Identifiable, Codable, Equatable {
         totalMs = Int((r.timings["total"] ?? 0) * 1000)
         fieldsJSON = JSONValue.object(PolicyFields.keys.map { ($0, r.fields.jsonObject[$0] ?? .null) }).serialized(pretty: false)
         evidence = r.evidence.mapValues { Evidence(confidence: $0.confidence, evidence: $0.evidence, note: $0.note) }
-        warnings = r.warnings
+        warnings = r.warnings + (r.timings["model"].map { [String(format: "on-device model: %.1f s", $0)] } ?? [])
         lines = r.normalizedLines
     }
 

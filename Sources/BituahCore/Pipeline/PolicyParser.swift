@@ -10,6 +10,12 @@ public struct ParserOptions {
     public var ocrEngine: OCREngine?
     /// Secondary engine used to cross-check digit strings (Vision on Apple platforms).
     public var digitCrossCheckEngine: OCREngine?
+    /// rules (default) | model | hybrid — see `ExtractionMode`.
+    public var mode: ExtractionMode = .rules
+    /// On-device language model used by `.model` and `.hybrid`.
+    public var fieldModel: FieldModel?
+    /// Hybrid: rules values with confidence below this are replaced by the model's.
+    public var hybridThreshold: Double = 0.8
 
     public init(forceOCR: Bool = false, dpi: CGFloat = 300, ocrEngine: OCREngine? = nil, digitCrossCheckEngine: OCREngine? = nil) {
         self.forceOCR = forceOCR
@@ -98,8 +104,29 @@ public final class PolicyParser {
 
         // Extract.
         let t3 = Date()
-        let (fields, evidence) = Self.extract(from: normalized)
+        var (fields, evidence) = Self.extract(from: normalized)
         timings["extract"] = Date().timeIntervalSince(t3)
+        if options.mode != .rules {
+            let t4 = Date()
+            if let model = options.fieldModel {
+                do {
+                    let draft = try model.extract(lines: normalized.map(\.text))
+                    let validated = draft.validated(modelName: model.name)
+                    switch options.mode {
+                    case .model: (fields, evidence) = validated
+                    case .hybrid: (fields, evidence) = HybridMerger.merge(rules: (fields, evidence), model: validated, threshold: options.hybridThreshold)
+                    case .rules: break
+                    }
+                } catch {
+                    warnings.append("model failed: \(error)")
+                    if options.mode == .model { fields = PolicyFields(); evidence = [:] }
+                }
+            } else {
+                warnings.append("mode \(options.mode.rawValue) requested but no model configured")
+                if options.mode == .model { fields = PolicyFields(); evidence = [:] }
+            }
+            timings["model"] = Date().timeIntervalSince(t4)
+        }
         timings["total"] = Date().timeIntervalSince(t0)
 
         return ExtractionResult(fileName: fileName, fields: fields, evidence: evidence, source: source,

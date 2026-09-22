@@ -1,0 +1,62 @@
+{
+  "extra_1_menora_home.pdf": {
+    "insured_id": "123456782",
+    "company_name": "מנורה מבטחים ביטוח בע\"מ",
+    "policy_number": "300-4471928-01",
+    "insurance_type": "דירה",
+    "start_date": "2026-02-10",
+    "end_date": "2027-02-09",
+    "monthly_premium_ils": 220.0,
+    "deductible_ils": 800.0
+  },
+  "extra_2_clal_pension.pdf": {
+    "insured_id": "205876431",
+    "company_name": "כלל פנסיה וגמל בע\"מ",
+    "policy_number": "8837201-55",
+    "insurance_type": "פנסיה",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "monthly_premium_ils": 1250.0,
+    "deductible_ils": null
+  },
+  "extra_3_ayalon_auto.pdf": {
+    "insured_id": "312345678",
+    "company_name": "איילון חברה לביטוח בע\"מ",
+    "policy_number": "12-345678-9",
+    "insurance_type": "רכב",
+    "start_date": "2026-04-01",
+    "end_date": "2027-03-31",
+    "monthly_premium_ils": 155.0,
+    "deductible_ils": 0.0
+  },
+  "extra_4_phoenix_ltc.pdf": {
+    "insured_id": "028765432",
+    "company_name": "הפניקס חברה לביטוח בע\"מ",
+    "policy_number": "7710-2299-31",
+    "insurance_type": "סיעוד",
+    "start_date": "2025-07-15",
+    "end_date": "2045-07-14",
+    "monthly_premium_ils": 312.4,
+    "deductible_ils": null
+  },
+  "extra_5_harel_health_table.pdf": {
+    "insured_id": "034567891",
+    "company_name": "הראל חברה לביטוח בע\"מ",
+    "policy_number": "5522-118877",
+    "insurance_type": "בריאות",
+    "start_date": "2026-09-01",
+    "end_date": "2027-08-31",
+    "monthly_premium_ils": 270.0,
+    "deductible_ils": 40.0
+  },
+  "extra_6_migdal_life.pdf": {
+    "insured_id": "301234567",
+    "company_name": "מגדל חברה לביטוח בע\"מ",
+    "policy_number": "66-0198234",
+    "insurance_type": "חיים",
+    "start_date": "2026-03-01",
+    "end_date": "2046-02-28",
+    "monthly_premium_ils": 98.7,
+    "deductible_ils": 0.0
+  }
+}

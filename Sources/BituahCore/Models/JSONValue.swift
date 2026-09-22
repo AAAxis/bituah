@@ -78,7 +78,7 @@ public indirect enum JSONValue: Equatable, Sendable {
 
     /// `245.5` stays `245.5`, `1500` becomes `1500.0` (Python float style), integers used as counts stay integers
     /// only when explicitly serialized via `.number(Double(Int))` — for the schema all money fields are floats.
-    static func formatNumber(_ d: Double) -> String {
+    public static func formatNumber(_ d: Double) -> String {
         if d.isNaN || d.isInfinite { return "null" }
         if d == d.rounded() && abs(d) < 1e15 { return String(format: "%.1f", d) }
         var s = String(format: "%.4f", d)

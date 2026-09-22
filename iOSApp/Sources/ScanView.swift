@@ -15,10 +15,21 @@ final class ScanModel: ObservableObject {
         return (urls + variants).sorted { $0.lastPathComponent < $1.lastPathComponent }
     }
 
+    @Published var useModel = ScanModel.modelAvailable
+
+    static var modelAvailable: Bool {
+        if #available(iOS 26, *) { return FoundationModelExtractor().isAvailable }
+        return false
+    }
+
     private func options() -> ParserOptions {
         var o = ParserOptions()
         o.ocrEngine = TesseractiOSEngine.shared
         o.digitCrossCheckEngine = VisionOCREngine()
+        if useModel, #available(iOS 26, *) {
+            o.mode = .hybrid                      // rules first; Apple's on-device model fills low-confidence fields
+            o.fieldModel = FoundationModelExtractor()
+        }
         return o
     }
 
@@ -115,6 +126,15 @@ struct ScanView: View {
             .controlSize(.large)
             .disabled(model.isRunning || !DocumentScanner.isSupported)
             .padding(.horizontal)
+
+            if ScanModel.modelAvailable {
+                Toggle(isOn: $model.useModel) {
+                    Label("מודל על המכשיר (Apple Intelligence) — היברידי", systemImage: "sparkles")
+                        .font(.footnote)
+                }
+                .toggleStyle(.switch)
+                .padding(.horizontal, 24)
+            }
 
             HStack(spacing: 16) {
                 Button { showPicker = true } label: { Label("ייבוא PDF", systemImage: "folder") }
